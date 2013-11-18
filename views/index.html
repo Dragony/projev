@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Cardgame Prototype</title>
+		<link href="/css/styles.css" type="text/css" rel="stylesheet">
+		<link href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<script>
+			var socket = io.connect('http://localhost');
+		</script>
+		<script src="/js/formHandler.js" type="text/javascript"></script>
+	</head>
+	<body>
+		<div id="container">
+			<div class="formContainer">
+				<div class="title">
+					Status
+				</div>
+				<div class="form">
+					Current Status of your user is shown here
+				</div>
+			</div>
+			<div id="registerForm" class="formContainer">
+				<div class="title">
+					Register
+				</div>
+				<div class="form">
+					<form name="register">
+						<input type="text" name="username" placeholder="Username"><br>
+						<input type="text" name="email" placeholder="E-mail"><br>
+						<input type="password" name="password" placeholder="Password"><br>
+						<!--<input type="password" name="pwd2" placeholder="Password confirm"><br>-->
+						<br>
+						<input type="submit" value="Registrieren">
+					</form>
+				</div>
+			</div>
+			<div id="loginForm" class="formContainer">
+				<div class="title">
+					Login
+				</div>
+				<div class="form">
+					<form name="login">
+						<input type="text" name="username" placeholder="Username"><br>
+						<input type="password" name="pwd1" placeholder="Password"><br>
+						<br>
+						<input type="submit" value="Login">
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
