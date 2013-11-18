@@ -4,7 +4,28 @@ socket.on('formResponse', function (data) {
 	console.log('Form Response:', data);
 	switch(data.action){
 		case 'register':
-			alert('Congratulations, you registered a user!');
+			if(data.result){
+				alert('User was registered!');
+			}else{
+				for(i in data.response.errors){
+					var error = data.response.errors[i];
+					for(field in error){
+						alert('Error in field "'+ field +'": '+ error[field]);
+					}
+				}
+			}
+		break;
+		case 'login':
+			if(data.result){
+				alert('User logged in!');
+			}else{
+				for(i in data.response.errors){
+					var error = data.response.errors[i];
+					for(field in error){
+						alert('Error in field "'+ field +'": '+ error[field]);
+					}
+				}
+			}
 		break;
 	}
 });
@@ -15,7 +36,7 @@ $(function(){
 	$(document).on('submit', 'form', function(e){
 		var submitAction = $(this).attr('name');
 		socket.emit('formSubmit', { action: submitAction, data: formatForm($(this)) });
-		console.log('Sent Values: ', formatForm($(this)));
+		console.log('Sent Values: ', submitAction, formatForm($(this)));
 		e.preventDefault();
 	});
 })

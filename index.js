@@ -1,20 +1,23 @@
-global.req = function(dir){
-	return require(__dirname + '/' + dir);
+global.req = function(dir, asFunc){
+	if(asFunc){
+		return require(__dirname + '/' + dir)();
+	}else{
+		return require(__dirname + '/' + dir);
+	}
 }
 
-var express = require('express')
-var app = express()
-  , ioPlain = require('socket.io')
-  , user = require('./logic/entities')
+global.sessionSecret = 'Kw8ML7AAQgFKJ7zp0rsT';
 
-var http = app.listen(8080);
+var boot = global.req('logic/boot');
+var app = boot.app
+  , io = boot.io
+  , express = boot.express
+
 app.use(express.static(__dirname + '/assets'));
+app.use(express.cookieParser());
+app.use(express.cookieSession({secret: global.sessionSecret}));
 
-var io = ioPlain.listen(http);
-io.set('log level', 2);
-io.set('browser client minification', true);
-
-var formListener = require('./logic/formListener').listen(io);
+var formListener = require('./logic/formListener')();
 
 app.set('views', __dirname + '/views');
 app.engine('html', require('ejs').renderFile);
