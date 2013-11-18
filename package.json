@@ -1,0 +1,17 @@
+{
+	"scripts": {
+		"start": "nodemon index.js"
+	},
+	"name": "projev-proto",
+	"version": "0.0.1",
+	"dependencies": {
+		"express": "3.x.x",
+		"connect": "2.x.x",
+		"cookie": "0.x.x",
+		"ejs": "0.x.x",
+		"mysql": "2.x.x",
+		"nodemon": "0.7.x",
+		"sequelize": "2.x.x",
+		"socket.io": "0.9.x"
+	}
+}
