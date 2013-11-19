@@ -9,7 +9,7 @@ module.exports = new function(){
 	console.log('boot called');
 	// Init and config Socket.io
 	if(http === undefined){
-		var http = app.listen(8080);
+		var http = app.listen(process.env.PORT || 5000);
 		var io = ioPlain.listen(http);
 		io.set('log level', 2);
 		io.set('browser client minification', true);
