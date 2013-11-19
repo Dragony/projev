@@ -1,5 +1,4 @@
 var userModel = global.req('logic/entities').user;
-var _ = require('underscore');
 var events = global.req('logic/events');
 var util = require("util");
 
