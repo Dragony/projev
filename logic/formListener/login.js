@@ -14,7 +14,9 @@ module.exports = function(formData, socket){
   		if(user === null){
   			events.emit('formResponse', { action: 'login', data: { result: false, errors: [{ username: 'You could not be logged in. Invalid Information.' }]} });
   		}else{
-  			session.getById(socket.manager.handshaken[socket.id].sessionID).set('validated', true);
+  			var s = session.getById(socket.manager.handshaken[socket.id].sessionID);
+  			s.set('validated', true);
+  			s.set('user', user);
   			events.emit('formResponse', { action: 'login', data: { result: true } });
   		}
 	})
